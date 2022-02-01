@@ -220,10 +220,11 @@ func TestValidateAccessToken(t *testing.T) {
 					assert.Error(t, err)
 				}
 				actualExpireTime := time.Now().Add(-time.Duration(cfg.AccessLifetimeMinutes) * time.Minute)
+				expectedTime := actualExpireTime
 				fmt.Println(actualExpireTime)
 				assert.WithinDuration(
 					t,
-					time.Now().Add(-time.Minute*time.Duration(cfg.AccessLifetimeMinutes)),
+					expectedTime,
 					actualExpireTime,
 					time.Second,
 				)
